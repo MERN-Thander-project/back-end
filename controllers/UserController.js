@@ -5,10 +5,6 @@ import bcrypt from "bcrypt";
 
 export const register = async (req, res) => {
     try {
-        const errs = validationResult(req);
-        if (!errs.isEmpty()) {
-            return res.status(400).json(errs.array());
-        }
         const password = req.body.password;
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
