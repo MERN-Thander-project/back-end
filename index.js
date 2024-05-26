@@ -13,9 +13,7 @@ import {UserController,PostController} from "./controllers/index.js";
 import {handleValidationErrors,checkAuth} from "./utils/index.js";
 mongoose
     .connect(
-        // "mongodb+srv://admin:admin@cluster0.cxnvj6r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-        "mongodb+srv://admin:admin@cluster0.cxnvj6r.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0"
-        
+        process.env.MONGODB_URI
     )
     .then(() => {
         
@@ -80,7 +78,7 @@ app.patch(
     handleValidationErrors,
     PostController.update
 );
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
     if (err) {
         return console.log(err);
     }
