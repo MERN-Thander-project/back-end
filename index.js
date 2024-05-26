@@ -27,13 +27,12 @@ mongoose
 
 const app = express();
 const storage = multer.diskStorage({
-    //load
-    destination: (_, __, cb) => {
+    destination: (req, file, cb) => {
         cb(null, "uploads");
     },
-    filename: (_, file, cb) => {
+    filename: (req, file, cb) => {
         cb(null, file.originalname);
-    },
+    }
 });
 
 const upload = multer({storage}); //load
@@ -77,7 +76,7 @@ app.delete("/posts/:id", checkAuth, PostController.remove);
 app.patch(
     "/posts/:id",
     checkAuth,
-    postCreateValidation,
+    // postCreateValidation,
     handleValidationErrors,
     PostController.update
 );
