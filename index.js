@@ -13,7 +13,7 @@ import {UserController,PostController} from "./controllers/index.js";
 import {handleValidationErrors,checkAuth} from "./utils/index.js";
 mongoose
     .connect(
-        process.env.MONGODB_URI
+        process.env.MONGODB_URI || 'mongodb+srv://admin:admin@cluster0.cxnvj6r.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0'
     )
     .then(() => {
         
